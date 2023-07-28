@@ -9,7 +9,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 
-contract AtlantisSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUpgradeable {
+contract TokenSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUpgradeable {
     using SafeMath for uint256;
 
     bool public isLocked;
@@ -28,14 +28,14 @@ contract AtlantisSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, Pausabl
     uint256 public dollarRate;
     uint256 constant dollarUnit = 10 ** 18;
 
-    uint256 immutable public minimumAmountToBuy;
+    uint256 public minimumAmountToBuy;
 
     address payable fundingWallet;
 
     
     event Buy(address indexed beneficiary, address theToken, uint256 theTokenAmount, uint256 tokenToSaleAmount);
 
-    constructor(
+    function __TokenSale_init(
         address _tokenToSale, 
         uint256 _totalToSale, 
         uint256 _dollarRate, 
@@ -43,7 +43,12 @@ contract AtlantisSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, Pausabl
         address payable _fundWallet, 
         address[] memory _baseTokens,
         address[] memory _chainLinkOracles
-    ) {
+    ) internal onlyInitializing {
+        
+        OwnableUpgradeable.__Ownable_init();
+        ReentrancyGuardUpgradeable.__ReentrancyGuard_init();
+        PausableUpgradeable.__Pausable_init();
+
         require(
             _tokenToSale != address(0),
             "TokenSale: saling token is zero"
@@ -99,7 +104,7 @@ contract AtlantisSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, Pausabl
     /**
      * @dev charge the vesting contract
      */
-    function chargeTokenSale(address tokenSaleCharger) external onlyOwner {
+    function chargeTokenSale(address tokenSaleCharger) internal {
 
         require(tokenToSale.allowance(tokenSaleCharger, address(this)) >= totalSalingAmount,
             "TokenSale: there is not enough token to sale"
