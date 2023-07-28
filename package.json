@@ -1,6 +1,6 @@
 {
   "name": "token-sale-contracts",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "a set of smart contracts to handle token sale on an EVM blockchain",
   "files": [
     "/contracts/**/*.sol"

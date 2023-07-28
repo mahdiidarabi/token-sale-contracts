@@ -152,7 +152,7 @@ contract TokenSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUp
     }
 
 
-    function buytokenToSales(address theBaseToken, address beneficiary, uint256 tokenToSaleAmnt) public nonReentrant payable {
+    function buyTokenToSales(address theBaseToken, address beneficiary, uint256 tokenToSaleAmnt) public nonReentrant payable {
 
         require(
             !isLocked,
