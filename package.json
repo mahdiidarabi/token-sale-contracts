@@ -1,0 +1,9 @@
+{
+  "name": "token-sale-contracts",
+  "version": "0.0.1",
+  "description": "a set of smart contracts to handle token sale on an EVM blockchain",
+  "main": "index.js",
+  "repository": "git@github.com-mahdiidarabi:mahdiidarabi/token-sale-contracts.git",
+  "author": "mahdiidarabi <mahdida97@gmail.com>",
+  "license": "MIT"
+}
