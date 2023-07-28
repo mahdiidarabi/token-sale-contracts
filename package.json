@@ -7,6 +7,9 @@
   "author": "mahdiidarabi <mahdida97@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@openzeppelin/contracts": "^4.9.2",
+    "@openzeppelin/contracts-upgradeable": "^4.9.2",
     "hardhat": "^2.17.0"
   },
   "devDependencies": {
