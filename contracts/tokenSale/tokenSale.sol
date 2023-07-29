@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.8.4;
+pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -19,7 +19,7 @@ contract TokenSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUp
     uint256 public totalSold;
 
     // the following address will be used instead of the native token of the network
-    address public asNativeToken = 0x1111111111111111111010101010101010101010;
+    address constant public asNativeToken = 0x1111111111111111111010101010101010101010;
 
     mapping(address => bool) public isTokenSupported;
     mapping(address => address) public oracles;
@@ -272,6 +272,5 @@ contract TokenSale is OwnableUpgradeable, ReentrancyGuardUpgradeable, PausableUp
                 "TokenSale: couldn't transfer token"
             );
         }        
-
     }
 }
